@@ -26,15 +26,14 @@ struct ProfileView: View {
         }
     }
     
-    @ViewBuilder
-    func profile(user: User) -> some View {
+    @ViewBuilder func profile(user: User) -> some View {
         //Avatar
         Image(systemName: "person.circle")
             .resizable()
             .aspectRatio(contentMode: .fit)
             .foregroundColor(.blue)
             .frame(width: 125, height: 125)
-        padding()
+            .padding()
         
         //Info: name, email, member since
         VStack(alignment: .leading) {
@@ -42,27 +41,24 @@ struct ProfileView: View {
                 Text("Name: ")
                 Text(user.name)
             }
-            
+
             HStack {
                 Text("Email: ")
                 Text(user.email)
             }
-            
+
             HStack {
                 Text("Member since: ")
                 Text("\(Date(timeIntervalSince1970: user.joined).formatted(date: .abbreviated, time: .shortened))")
             }
         }
         Divider()
-        
         //Log out
         TLButton(title: "Log Out",
                  background: .red) {
             viewModel.logout()
         }
-                 .padding()
-                 
-        Spacer()
+                 .padding(.bottom, 240)
     }
 }
 
